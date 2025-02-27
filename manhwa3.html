@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Niykus - Selfish Romance</title>
+    <link rel="stylesheet" href="styles.css">
+    <script defer src="script.js"></script>
+    <style>
+        body {
+            font-size: 16px;
+            max-width: 100%;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background-color: #1a1a2e;
+            color: white;
+            font-family: 'Arial', sans-serif;
+            position: relative;
+        }
+
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 15px;
+            text-align: center;
+            background: linear-gradient(90deg, #6a0572, #9d50bb);
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+            width: 100%;
+        }
+
+        .logo img {
+            width: 70px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            margin-right: 10px;
+        }
+        .logo img:hover {
+            transform: scale(1.1);
+        }
+
+        h1 {
+            font-size: 24px;
+            margin: 0;
+        }
+
+        main {
+            padding: 20px;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        h2 {
+            margin-bottom: 10px;
+            font-size: 24px;
+        }
+
+        #chapter-selector {
+            padding: 12px;
+            font-size: 16px;
+            border-radius: 10px;
+            border: 2px solid #9d50bb;
+            background-color: #6a0572;
+            color: white;
+            cursor: pointer;
+            transition: 0.3s;
+            width: 100%;
+            max-width: 350px;
+        }
+
+        #chapter-selector:hover {
+            background-color: #9d50bb;
+            border-color: #6a0572;
+        }
+
+        #chapter-content {
+            margin-top: 20px;
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            border-radius: 10px;
+        }
+
+        .chapter-images img {
+            width: 100%;
+            max-width: 800px;
+            display: block;
+            margin: 10px auto;
+            border-radius: 10px;
+        }
+
+        #back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            border: none;
+            background: none;
+            cursor: pointer;
+            display: none;
+            transition: transform 0.3s ease;
+        }
+
+        #back-to-top img {
+            width: 100%;
+            border-radius: 50%;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+        }
+
+        #back-to-top:hover {
+            transform: scale(1.1);
+        }
+
+        @media (max-width: 600px) {
+            body {
+                font-size: 14px;
+            }
+            .logo img {
+                width: 50px;
+            }
+            h1 {
+                font-size: 18px;
+            }
+            main {
+                padding: 10px;
+            }
+            h2 {
+                font-size: 20px;
+            }
+            #chapter-selector {
+                font-size: 14px;
+                padding: 10px;
+            }
+            #chapter-content {
+                padding: 10px;
+            }
+        }
+    </style>
+    <script>
+        function changeChapter() {
+            const selector = document.getElementById("chapter-selector");
+            const selectedChapter = selector.value;
+            const chapterContent = document.getElementById("chapter-content");
+            
+            // Simulação de imagens para cada capítulo
+            const images = {
+                "chapter1.html": ["chap1-1.jpg", "chap1-2.jpg", "chap1-3.jpg"],
+                "chapter2.html": ["chap2-1.jpg", "chap2-2.jpg", "chap2-3.jpg"],
+                "chapter3.html": ["chap3-1.jpg", "chap3-2.jpg", "chap3-3.jpg"],
+                "chapter4.html": ["chap4-1.jpg", "chap4-2.jpg", "chap4-3.jpg"],
+                "chapter5.html": ["chap5-1.jpg", "chap5-2.jpg", "chap5-3.jpg"],
+                "chapter6.html": ["chap6-1.jpg", "chap6-2.jpg", "chap6-3.jpg"],
+                "chapter7.html": ["chap7-1.jpg", "chap7-2.jpg", "chap7-3.jpg"],
+                "chapter8.html": ["chap8-1.jpg", "chap8-2.jpg", "chap8-3.jpg"],
+                "chapter9.html": ["chap9-1.jpg", "chap9-2.jpg", "chap9-3.jpg"],
+                "chapter10.html": ["chap10-1.jpg", "chap10-2.jpg", "chap10-3.jpg"],
+                "chapter11.html": ["chap11-1.jpg", "chap11-2.jpg", "chap11-3.jpg"],
+                "chapter12.html": ["chap12-1.jpg", "chap12-2.jpg", "chap12-3.jpg"],
+                "chapter13.html": ["chap13-1.jpg", "chap13-2.jpg", "chap13-3.jpg"],
+                "chapter14.html": ["chap14-1.jpg", "chap14-2.jpg", "chap14-3.jpg"],
+                "chapter15.html": ["chap15-1.jpg", "chap15-2.jpg", "chap15-3.jpg"],
+                "chapter16.html": ["chap16-1.jpg", "chap16-2.jpg", "chap16-3.jpg"],
+                "chapter17.html": ["chap17-1.jpg", "chap17-2.jpg", "chap17-3.jpg"],
+                "chapter18.html": ["chap18-1.jpg", "chap18-2.jpg", "chap18-3.jpg"],
+                "chapter19.html": ["chap19-1.jpg", "chap19-2.jpg", "chap19-3.jpg"],
+                "chapter20.html": ["chap20-1.jpg", "chap20-2.jpg", "chap20-3.jpg"],
+                "chapter21.html": ["chap21-1.jpg", "chap21-2.jpg", "chap21-3.jpg"],
+                "chapter22.html": ["chap22-1.jpg", "chap22-2.jpg", "chap22-3.jpg"],
+                "chapter23.html": ["chap23-1.jpg", "chap23-2.jpg", "chap23-3.jpg"],
+                "chapter24.html": ["chap24-1.jpg", "chap24-2.jpg", "chap24-3.jpg"],
+                "chapter25.html": ["chap25-1.jpg", "chap25-2.jpg", "chap25-3.jpg"],
+                "chapter26.html": ["chap26-1.jpg", "chap26-2.jpg", "chap26-3.jpg"],
+                "chapter27.html": ["chap27-1.jpg", "chap27-2.jpg", "chap27-3.jpg"],
+                "chapter28.html": ["chap28-1.jpg", "chap28-2.jpg", "chap28-3.jpg"],
+                "chapter29.html": ["chap29-1.jpg", "chap29-2.jpg", "chap29-3.jpg"],
+                "chapter30.html": ["chap30-1.jpg", "chap30-2.jpg", "chap30-3.jpg"],
+                "chapter31.html": ["chap31-1.jpg", "chap31-2.jpg", "chap31-3.jpg"],
+                "chapter32.html": ["chap32-1.jpg", "chap32-2.jpg", "chap32-3.jpg"],
+                "chapter33.html": ["chap33-1.jpg", "chap33-2.jpg", "chap33-3.jpg"],
+                "chapter34.html": ["chap34-1.jpg", "chap34-2.jpg", "chap34-3.jpg"],
+                "chapter35.html": ["chap35-1.jpg", "chap35-2.jpg", "chap35-3.jpg"],
+                "chapter36.html": ["chap36-1.jpg", "chap36-2.jpg", "chap36-3.jpg"],
+                "chapter37.html": ["chap37-1.jpg", "chap37-2.jpg", "chap37-3.jpg", "chap37-4.jpg", "chap37-5.jpg", "chap37-6.jpg", "chap37-7.jpg", "chap37-8.jpg", "chap37-9.jpg", "chap37-10.jpg", "chap37-11.jpg", "chap37-12.jpg", "chap37-13.jpg", "chap37-14.jpg", "chap37-15.jpg", "chap37-16.jpg", "chap37-17.jpg", "chap37-18.jpg", "chap37-19.jpg", "chap37-20.jpg"],
+                "chapter38.html": ["chap38-1.jpg", "chap38-2.jpg", "chap38-3.jpg"],
+                "chapter39.html": ["chap39-1.jpg", "chap39-2.jpg", "chap39-3.jpg"],
+                "chapter40.html": ["chap40-1.jpg", "chap40-2.jpg", "chap40-3.jpg"],
+                "chapter41.html": ["chap41-1.jpg", "chap41-2.jpg", "chap41-3.jpg"],
+            };
+            
+            if (images[selectedChapter]) {
+                chapterContent.innerHTML = images[selectedChapter].map(img => `<img src="images/${img}" alt="Página do capítulo">`).join("\n");
+            } else {
+                chapterContent.innerHTML = "<p>Capítulo não encontrado.</p>";
+            }
+        }
+    </script>
+    <script>
+        window.addEventListener("scroll", function() {
+            const backToTopButton = document.getElementById("back-to-top");
+            if (window.scrollY > 300) {
+                backToTopButton.style.display = "block";
+            } else {
+                backToTopButton.style.display = "none";
+            }
+        });
+
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <div class="logo" onclick="goToHome()">
+            <img src="imagens/logo.png" alt="Kuromi Logo">
+        </div>
+        <h1>Selfish Romance</h1>
+    </header>
+    
+    <main>
+        <h2>Selecione um Capítulo</h2>
+        <select id="chapter-selector" onchange="changeChapter()">
+            <option value="chapter1.html">Capítulo 1</option>
+            <option value="chapter2.html">Capítulo 2</option>
+            <option value="chapter3.html">Capítulo 3</option>
+            <option value="chapter4.html">Capítulo 4</option>
+            <option value="chapter5.html">Capítulo 5</option>
+            <option value="chapter6.html">Capítulo 6</option>
+            <option value="chapter7.html">Capítulo 7</option>
+            <option value="chapter8.html">Capítulo 8</option>
+            <option value="chapter9.html">Capítulo 9</option>
+            <option value="chapter10.html">Capítulo 10</option>
+            <option value="chapter11.html">Capítulo 11</option>
+            <option value="chapter12.html">Capítulo 12</option>
+            <option value="chapter13.html">Capítulo 13</option>
+            <option value="chapter14.html">Capítulo 14</option>
+            <option value="chapter15.html">Capítulo 15</option>
+            <option value="chapter16.html">Capítulo 16</option>
+            <option value="chapter17.html">Capítulo 17</option>
+            <option value="chapter18.html">Capítulo 18</option>
+            <option value="chapter19.html">Capítulo 19</option>
+            <option value="chapter20.html">Capítulo 20</option>
+            <option value="chapter21.html">Capítulo 21</option>
+            <option value="chapter22.html">Capítulo 22</option>
+            <option value="chapter23.html">Capítulo 23</option>
+            <option value="chapter24.html">Capítulo 24</option>
+            <option value="chapter25.html">Capítulo 25</option>
+            <option value="chapter26.html">Capítulo 26</option>
+            <option value="chapter27.html">Capítulo 27</option>
+            <option value="chapter28.html">Capítulo 28</option>
+            <option value="chapter29.html">Capítulo 29</option>
+            <option value="chapter30.html">Capítulo 30</option>
+            <option value="chapter31.html">Capítulo 31</option>
+            <option value="chapter32.html">Capítulo 32</option>
+            <option value="chapter33.html">Capítulo 33</option>
+            <option value="chapter34.html">Capítulo 34</option>
+            <option value="chapter35.html">Capítulo 35</option>
+            <option value="chapter36.html">Capítulo 36</option>
+            <option value="chapter37.html">Capítulo 37</option>
+            <option value="chapter38.html">Capítulo 38</option>
+            <option value="chapter39.html">Capítulo 39</option>
+            <option value="chapter40.html">Capítulo 40</option>
+            <option value="chapter41.html">Capítulo 41</option>
+        </select>
+        
+        <div id="chapter-content">
+            <p>Selecione um capítulo para começar a leitura.</p>
+        </div>
+    </main>
+
+    <button id="back-to-top" onclick="scrollToTop()">
+        <img src="imagens/kuromilogo2.png" alt="Voltar ao Topo">
+    </button>
+</body>
+</html>

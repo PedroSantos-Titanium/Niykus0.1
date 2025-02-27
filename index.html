@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Niykus</title>
+    <link rel="stylesheet" href="styles.css">
+    <script defer src="script.js"></script>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background-color: #1a1a2e;
+            color: white;
+            text-align: center;
+        }
+
+        header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 15px;
+            background: linear-gradient(90deg, #6a0572, #9d50bb);
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+            width: 100%;
+        }
+
+        .logo img {
+            width: 210px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        .logo img:hover {
+            transform: scale(1.1);
+        }
+
+        main {
+            padding: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .manhwa-list {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .manhwa-item {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 10px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: transform 0.3s;
+            width: 150px;
+        }
+
+        .manhwa-item:hover {
+            transform: scale(1.05);
+        }
+
+        .manhwa-item img {
+            width: 100%;
+            border-radius: 10px;
+        }
+
+        footer {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #6a0572;
+        }
+
+        @media (max-width: 600px) {
+            .logo img {
+                width: 60px;
+            }
+            h1 {
+                font-size: 20px;
+            }
+            .manhwa-item {
+                width: 120px;
+            }
+            .manhwa-item p {
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo" onclick="goToHome()">
+            <img src="imagens/logo.png" alt="Kuromi Logo">
+        </div>
+        <h1>🎀 𝑵𝒊𝒚𝒌𝒖𝒔 🌺</h1>
+        <h2>𝙎𝙚𝙪 𝙇𝙚𝙞𝙩𝙤𝙧 𝙋𝙚𝙨𝙨𝙤𝙖𝙡 𝙙𝙚 𝙈𝙖𝙣𝙝𝙬𝙖𝙨</h2>
+    </header>
+    
+    <main id="manhwa-selection">
+        <h2>Selecione um Manhwa</h2>
+        <div class="manhwa-list">
+            <div class="manhwa-item" onclick="openManhwa('manhwa1.html')">
+                <img src="imagens/manhwa1.jpeg" alt="Lágrimas Sobre Flores Murchas">
+                <p>Lágrimas Sobre Flores Murchas</p>
+            </div>
+            <div class="manhwa-item" onclick="openManhwa('manhwa2.html')">
+                <img src="imagens/manhwa2.jpg" alt="Flores São Iscas">
+                <p>Flores São Iscas</p>
+            </div>
+            <div class="manhwa-item" onclick="openManhwa('manhwa3.html')">
+                <img src="imagens/manhwa3.jpeg" alt="Selfish Romance">
+                <p>Selfish Romance</p>
+            </div>
+        </div>
+    </main>
+    
+    <footer>
+        <p>&copy; 2025 Niykus Leitor de Manhwa - Feito com 💜 pelo seu amado marido.</p>
+    </footer>
+</body>
+</html>
